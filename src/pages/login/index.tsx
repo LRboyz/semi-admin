@@ -6,7 +6,6 @@ import Link from 'next/link';
 import { NextSeo } from 'next-seo';
 import { FormattedMessage } from 'react-intl';
 import { ClientOnly } from '@/components/ClientOnly';
-import { PageEnum } from '@/enums/app.enum';
 import { useIntl } from '@/locale';
 import { useAuth } from '@/hooks/useAuth';
 
@@ -18,7 +17,7 @@ import { useAuth } from '@/hooks/useAuth';
 //   };
 // }
 
-export default function Login({}) {
+const LoginPage = ({}) =>  {
   const { login } = useAuth();
   const router = useRouter();
   const intl = useIntl();
@@ -97,3 +96,7 @@ export default function Login({}) {
     </ClientOnly>
   );
 }
+
+LoginPage.guestGuard = true 
+
+export default LoginPage

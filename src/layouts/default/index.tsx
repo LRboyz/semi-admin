@@ -88,6 +88,7 @@ export const BasicLayout: FunctionComponent<ProLayoutProps> = ({ children }) => 
             <ThemeModeSwitcher />
             <LocaleSwitcher />
             <Dropdown
+              className='w-30'
               trigger="hover"
               position="bottomLeft"
               render={
@@ -99,7 +100,7 @@ export const BasicLayout: FunctionComponent<ProLayoutProps> = ({ children }) => 
                 </Dropdown.Menu>
               }
             >
-              <div className="flex items-center w-30 hover:bg-red duration-200 p-1 rounded-sm">
+              <div className="flex items-center w-30 hover:bg-gray-100 duration-200 p-1 rounded-sm">
                 <Avatar
                   src={user?.user_metadata?.avatar}
                   color="orange"
@@ -109,10 +110,10 @@ export const BasicLayout: FunctionComponent<ProLayoutProps> = ({ children }) => 
                   }}
                 />
                 <div>
-                  {/* <p className="ml-3 text-xs">{user.user_metadata.name}</p>
+                  <p className="ml-3 text-xs">{user.user_metadata.name}</p>
                   <Tag size="small" className="ml-2" color="cyan">
                     <span className="text-xs">已认证</span>
-                  </Tag> */}
+                  </Tag>
                 </div>
               </div>
             </Dropdown>

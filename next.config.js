@@ -37,7 +37,7 @@ const nextConfig = semi({
   webpack(config) {
     config.plugins.push(
       new SemiWebpackPlugin({
-        theme: '@semi-bot/semi-theme-resemi-admin',
+        theme: '@semi-bot/semi-theme-universedesign',
         // include: '~@semi-bot/semi-theme-resemi-admin/scss/local.scss'
       }),
       new WindiCSSWebpackPlugin(),

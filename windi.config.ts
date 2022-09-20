@@ -1,4 +1,5 @@
 import { defineConfig } from 'windicss/helpers';
+import colors from 'windicss/colors';
 
 function generateColorsBySemi() {
   const disc = {
@@ -64,6 +65,11 @@ export default defineConfig({
   },
   darkMode: 'class',
   theme: {
+    extend: {
+      colors: {
+        gray: colors.gray,
+      },
+    },
     // "spacing" by padding,margin,width,height
     // padding: {
     //   xs: '4px',
@@ -79,7 +85,7 @@ export default defineConfig({
     //   lg: '32px',
     //   xl: '64px',
     // },
-    colors: generateColorsBySemi(),
+    // colors: {}, // generateColorsBySemi(),
     screens: {
       sm: '640px',
       // => @media (min-width: 640px) { ... }

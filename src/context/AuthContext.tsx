@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { AuthContextType, ErrorCallBackType, LoginParams, RegisterParams, UserDataType } from './types';
 import { supabase } from '@/utils/supabase';
 import { Toast, Notification } from '@douyinfe/semi-ui';
+import { getUserInfo } from '@/services/auth';
 
 const defaultProvider: AuthContextType = {
   user: null,
@@ -33,13 +34,10 @@ const AuthProvider = ({ children }: Props) => {
   useEffect(() => {
     const initAuth = async (): Promise<void> => {
       const token = localStorage.getItem('accessToken');
-      supabase.auth.getUser(token).then(({ data, error }) => {
-        if (error) {
-          Toast.error(`获取用户信息失败！原因:${error.message}`);
-        }
-        setUser({ ...data.user });
-        window.localStorage.setItem('userData', JSON.stringify(data.user));
-      });
+      getUserInfo().then((result) => {
+        setUser({ ...result });
+        window.localStorage.setItem('userData', JSON.stringify(result));
+      }).finally(() => setLoading(false))
     };
     initAuth();
   }, []);
