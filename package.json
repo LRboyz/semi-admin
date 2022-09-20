@@ -1,0 +1,100 @@
+{
+  "name": "supabaseAdmin",
+  "version": "0.9.0",
+  "author": {
+    "name": "LRBoy",
+    "email": "603552916@qq.com"
+  },
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:prod": "NODE_ENV=production next build",
+    "build:staging": "NODE_ENV=test next build",
+    "start": "next start",
+    "lint": "lint-staged",
+    "reinstall": "rimraf pnpm-lock.yaml && rimraf node_modules && pnpm install",
+    "release": "esno ./scripts/release",
+    "prepare": "husky install",
+    "generate": "esno scripts/generate/index"
+  },
+  "engines": {
+    "node": ">=14",
+    "pnpm": ">=7"
+  },
+  "homepage": "https://github.com/resemi/resemi-admin#readme",
+  "dependencies": {
+    "@douyinfe/semi-icons": "^2.19.0",
+    "@douyinfe/semi-illustrations": "^2.19.0",
+    "@douyinfe/semi-ui": "^2.19.0",
+    "@iconify/react": "^3.2.2",
+    "@potjs/cipher": "^0.0.2",
+    "@potjs/http": "^0.1.1",
+    "@supabase/supabase-js": "2.0.0-rc.10",
+    "chart.js": "^3.9.1",
+    "dayjs": "^1.11.5",
+    "lodash-es": "^4.17.21",
+    "next": "^12.2.5",
+    "next-seo": "^5.5.0",
+    "nprogress": "^0.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-intl": "^6.0.5",
+    "react-markdown": "^8.0.3",
+    "react-use": "^17.4.0",
+    "recoil": "^0.7.5",
+    "recoil-persist": "^4.2.0",
+    "reset-css": "^5.0.1",
+    "signature_pad": "^4.0.7",
+    "styled-jsx": "^5.0.4",
+    "video.js": "^7.20.2"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.0.3",
+    "@commitlint/config-conventional": "^17.0.3",
+    "@douyinfe/semi-next": "^2.19.0",
+    "@douyinfe/semi-webpack-plugin": "^2.19.0",
+    "@iconify/json": "^2.1.94",
+    "@semi-bot/semi-theme-resemi-admin": "^0.0.1",
+    "@types/fs-extra": "^9.0.13",
+    "@types/lodash-es": "^4.17.6",
+    "@types/node": "^18.7.3",
+    "@types/react": "^17.0.43",
+    "@types/react-dom": "^18.0.6",
+    "@types/video.js": "^7.3.46",
+    "@typescript-eslint/eslint-plugin": "^5.30.7",
+    "@typescript-eslint/parser": "^5.30.7",
+    "eslint": "^8.20.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "esno": "^0.16.3",
+    "fs-extra": "^10.1.0",
+    "husky": "^8.0.1",
+    "inquirer": "^9.0.2",
+    "intercept-stdout": "^0.1.2",
+    "lint-staged": "^13.0.3",
+    "picocolors": "^1.0.0",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "sass": "^1.54.4",
+    "semver": "^7.3.7",
+    "standard-version": "^9.5.0",
+    "typescript": "^4.7.4",
+    "webpack": "^5.74.0",
+    "windicss": "^3.5.6",
+    "windicss-webpack-plugin": "^1.7.5"
+  },
+  "resolutions": {
+    "@types/react": "^17.0.43"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint ./ --ext js,jsx,ts,tsx"
+    ]
+  }
+}

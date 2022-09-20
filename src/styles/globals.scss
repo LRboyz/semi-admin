@@ -1,0 +1,12 @@
+@import '~reset-css/sass/reset';
+//@import '~@douyinfe/semi-ui/dist/css/semi.min.css';
+@import "semi";
+@import "nprogress";
+
+html,
+body,
+#__next {
+  min-height: 100vh;
+  width: 100vw;
+  background-color: var(--semi-color-bg-0);
+}

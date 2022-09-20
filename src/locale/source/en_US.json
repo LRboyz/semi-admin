@@ -1,0 +1,20 @@
+{
+  "page.login.title": "Sign In",
+  "page.login.desc": "Username:anguer; Password:123456",
+  "page.login.label.username": "Username",
+  "page.login.label.password": "Password",
+  "page.login.error.required": "Required",
+  "page.login.action.signIn": "Sign In",
+  "page.login.action.signUp": "Sign Up",
+  "page.components.watermark.form.text": "Text",
+  "page.components.watermark.form.cellSize": "Cell Size",
+  "page.components.watermark.form.rotateAngle": "Rotate Angle",
+  "page.components.watermark.form.visible": "Visible",
+  "hello": "hello",
+  "layout.header": "Header",
+  "test1": "Hello, let's learn how to use React-Intl",
+  "test2": "How {n, number, ::currency/USD} is displayed in your selected language",
+  "test3": "This is how {n, number} is formatted in the selected locale",
+  "test4": "Start Today: {d, date}",
+  "click_count": "You clicked {count, plural, one {# time} other {# times}}"
+}
