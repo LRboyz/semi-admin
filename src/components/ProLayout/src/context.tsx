@@ -4,8 +4,10 @@ import { createContext, useContext } from 'react';
 export interface MenuItem {
   itemKey: string;
   text: string;
-  icon: ReactNode | string;
+  icon?: ReactNode | string;
   items: MenuItem[];
+  path?: string
+  component?: React.ComponentType<any>
 }
 
 export interface OnSelectedData {

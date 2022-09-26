@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { FunctionComponent, useEffect, useState } from 'react';
+import { FunctionComponent, useEffect, useMemo, useState } from 'react';
 import { IconBell } from '@douyinfe/semi-icons';
 import { Avatar, Button, Dropdown, Space, Tag } from '@douyinfe/semi-ui';
 import { ProLayout } from '@/components/ProLayout';
@@ -17,32 +17,53 @@ export const BasicLayout: FunctionComponent<ProLayoutProps> = ({ children }) => 
   const { logout, user } = useAuth();
   const [appState, setAppState] = useAppState();
   const [defaultSelectedKeys, setSelectedKeys] = useState([]);
-  const [menuList, setMenuList] = useState([]);
+  // const [menuList, setMenuList] = useState([]);
+  
+  const menuList = useMemo(() => { 
+    return createNavItems(routes)
+  }, [routes])
 
   useEffect(() => {
     setSelectedKeys([router.pathname]);
   }, [router.pathname]);
 
-  useEffect(() => {
-    /**
-     * 生成导航菜单项
-     * @param __
-     * @param parent
-     */
-    function createNavItems(__: RouteType[], parent?: RouteType) {
-      return __?.map((route) => {
-        return {
-          // itemKey: route.id,
-          itemKey: `${(parent && parent.path) || ''}/${route.path}`.replace('//', '/'),
-          text: route.name,
-          icon: route.icon && <Icon name={route.icon} />,
-          items: createNavItems(route.children, route),
-        };
-      });
-    }
+  // useEffect(() => {
+  //   /**
+  //    * 生成导航菜单项
+  //    * @param __
+  //    * @param parent
+  //    */
+  //   function createNavItems(__: RouteType[], parent?: RouteType) {
+  //     return __?.map((route) => {
+  //       return {
+  //         // itemKey: route.id,
+  //         itemKey: `${(parent && parent.path) || ''}/${route.path}`.replace('//', '/'),
+  //         text: route.name,
+  //         icon: route.icon && <Icon name={route.icon} />,
+  //         items: createNavItems(route.children, route),
+  //       };
+  //     });
+  //   }
 
-    setMenuList(createNavItems(routes));
-  }, []);
+  //   setMenuList(createNavItems(routes));
+  // }, []);
+
+  /**
+   * 生成导航菜单项
+   * @param __
+   * @param parent
+   */
+  function createNavItems(__: RouteType[], parent?: RouteType) {
+    return __?.map((route) => {
+      return {
+        // itemKey: route.id,
+        itemKey: `${(parent && parent.path) || ''}/${route.path}`.replace('//', '/'),
+        text: route.name,
+        icon: route.icon && <Icon name={route.icon} />,
+        items: createNavItems(route.children, route),
+      };
+    });
+  }
 
   /**
    * 切换菜单
@@ -88,7 +109,7 @@ export const BasicLayout: FunctionComponent<ProLayoutProps> = ({ children }) => 
             <ThemeModeSwitcher />
             <LocaleSwitcher />
             <Dropdown
-              className='w-30'
+              className="w-30"
               trigger="hover"
               position="bottomLeft"
               render={
@@ -100,7 +121,7 @@ export const BasicLayout: FunctionComponent<ProLayoutProps> = ({ children }) => 
                 </Dropdown.Menu>
               }
             >
-              <div className="flex items-center w-30 hover:bg-gray-100 duration-200 p-1 rounded-sm">
+              <div className="flex items-center w-30 duration-200 p-1 rounded-sm">
                 <Avatar
                   src={user?.user_metadata?.avatar}
                   color="orange"
@@ -122,8 +143,8 @@ export const BasicLayout: FunctionComponent<ProLayoutProps> = ({ children }) => 
       }}
       logo={{
         href: '/',
-        logo: 'https://anguer.com/upload/2020/1/favicon-fdb258cf2c2643c6bfc4ad261b1d9f25.ico',
-        text: 'Resemi Admin',
+        logo: 'https://ucraobyasxwobmuvmdcy.supabase.co/storage/v1/object/public/blog/logo/dolphin.png',
+        text: 'Semi Admin',
       }}
     >
       {children}

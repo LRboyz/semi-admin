@@ -72,15 +72,25 @@ export const routes: RouteType[] = [
     ],
   },
   {
-    id: 'Features',
-    path: '/dashboard/feat',
-    name: '功能',
-    icon: 'extension',
+    id: 'blog',
+    path: '/blog',
+    name: '博客管理',
+    icon: 'article',
     children: [
       {
-        id: 'Intl',
-        path: '/intl',
-        name: '国际化',
+        id: 'category',
+        path: '/category',
+        name: '分类管理',
+      },
+      {
+        id: 'article',
+        path: '/article',
+        name: '文章管理',
+      },
+      {
+        id: 'tag',
+        path: '/tag',
+        name: '标签管理',
       },
     ],
   },

@@ -70,6 +70,7 @@ export const BasicLayout: FunctionComponent<BasicLayoutProps> = ({ children }) =
   };
 
   const renderMain = () => {
+
     const style = {
       ...(!state.isMobile && {
         marginLeft: `${state.isSideCollapsed ? 60 : state.sidebar.width}px`,

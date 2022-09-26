@@ -9,7 +9,8 @@ import { DefaultSeo } from 'next-seo';
 import { LayoutAdapter } from '@/layouts';
 import { AppStoreProvider } from '@/store';
 import useProgress from '@/hooks/useProgress';
-
+import { UserProvider } from '@supabase/auth-helpers-react';
+import { supabaseClient } from '@supabase/auth-helpers-nextjs';
 import SEO from '../../next-seo.config.json';
 import { AuthProvider } from '@/context/AuthContext';
 import { ReactNode } from 'react';
@@ -37,13 +38,12 @@ type GuardProps = {
 };
 
 const Guard = ({ children, authGuard, guestGuard }: GuardProps) => {
-  console.log(children, authGuard, guestGuard  ,"惊喜")
   if (guestGuard) {
-    return <GuestGuard fallback={<FallbackSpinner />}>{children}</GuestGuard>
+    return <GuestGuard fallback={<FallbackSpinner />}>{children}</GuestGuard>;
   } else if (!guestGuard && !authGuard) {
     return <>{children}</>;
   } else {
-    return <AuthGuard fallback={<FallbackSpinner/>}>{children}</AuthGuard>
+    return <AuthGuard fallback={<FallbackSpinner />}>{children}</AuthGuard>;
   }
 };
 
@@ -56,16 +56,19 @@ export default function MyApp({ Component, pageProps }: AppPropsWithLayout) {
     () => NProgress.done(),
   );
 
+
   return (
-    <AuthProvider>
-      <AppStoreProvider>
-        <DefaultSeo {...SEO} />
-        <Guard guestGuard={guestGuard} authGuard={authGuard}>
-          <LayoutAdapter {...pageProps}>
-            <Component {...pageProps} />
-          </LayoutAdapter>
-        </Guard>
-      </AppStoreProvider>
-    </AuthProvider>
+    <UserProvider supabaseClient={supabaseClient}>
+      <AuthProvider supabaseClient={supabaseClient}>
+        <AppStoreProvider>
+          <DefaultSeo {...SEO} />
+          <Guard guestGuard={guestGuard} authGuard={authGuard}>
+            <LayoutAdapter {...pageProps}>
+              <Component {...pageProps} />
+            </LayoutAdapter>
+          </Guard>
+        </AppStoreProvider>
+      </AuthProvider>
+    </UserProvider>
   );
 }

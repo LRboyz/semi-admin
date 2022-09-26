@@ -7,7 +7,7 @@ export interface RequestParams {
 }
 
 const http = axios.create({
-  baseURL: 'https://ucraobyasxwobmuvmdcy.supabase.co',
+  baseURL: `${process.env.NEXT_PUBLIC_SUPABASE_URL}${process.env.NEXT_PUBLIC_BASE_API}`,
   timeout: 10000,
   headers: {
     'access-control-allow-origin': '*',
@@ -18,7 +18,8 @@ http.interceptors.request.use((config) => {
   // Read token for anywhere, in this case directly from localStorage
   const token = localStorage.getItem('accessToken');
   if (token) {
-    config.headers!.Authorization = `Bearer ${token}`;
+    // config.headers!.Authorization = `Bearer ${token}`;
+    config.headers['apikey'] = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
   }
 
   return config;

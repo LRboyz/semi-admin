@@ -21,7 +21,6 @@ const AuthGuard = (props: AuthGuardProps) => {
       if (!router.isReady) {
         return
       }
-
       if (auth.user === null && !window.localStorage.getItem('userData')) {
         if (router.asPath !== '/') {
           router.replace({
@@ -36,7 +35,7 @@ const AuthGuard = (props: AuthGuardProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [router.route]
   )
-console.log(auth, 'auth')
+
   if (auth.loading || auth.user === null) {
     return fallback
   }

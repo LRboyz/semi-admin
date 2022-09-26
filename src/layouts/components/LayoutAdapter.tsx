@@ -4,18 +4,20 @@ import { BasicLayout as AdminLayout } from '@/layouts/default';
 import { LandingLayout } from '@/layouts/landing';
 import { isAdmin } from '@/routes';
 import { useMounted } from '@/components/ClientOnly';
+import { useAuth } from '@/hooks/useAuth';
 
 export type LayoutAdapterProps = {};
 
 export const LayoutAdapter: FunctionComponent<LayoutAdapterProps> = ({ children }) => {
-  const { route } = useRouter();
+  const { user } = useAuth()
+
   const hasMounted = useMounted();
 
   if (!hasMounted) {
     return null;
   }
 
-  const Layout = isAdmin(route) ? AdminLayout : LandingLayout;
+  const Layout = user ? AdminLayout : LandingLayout;
 
   return <Layout>{children}</Layout>;
 };

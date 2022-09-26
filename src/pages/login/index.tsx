@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card, Form, Space, useFormApi, Avatar, Toast, Tooltip } from '@douyinfe/semi-ui';
+import { Button, Card, Form, Space, useFormApi, Avatar, Tooltip, Typography, Divider } from '@douyinfe/semi-ui';
 import { IconLock, IconUser } from '@douyinfe/semi-icons';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -17,7 +17,7 @@ import { useAuth } from '@/hooks/useAuth';
 //   };
 // }
 
-const LoginPage = ({}) =>  {
+const LoginPage = ({}) => {
   const { login } = useAuth();
   const router = useRouter();
   const intl = useIntl();
@@ -31,23 +31,22 @@ const LoginPage = ({}) =>  {
   // eslint-disable-next-line react/no-unstable-nested-components
   function ComponentUsingFormApi() {
     const formApi = useFormApi();
-    function onChange() {
-      formApi.setValue('password', '123456');
-    }
+
     return (
-      <Space spacing={12}>
-        <Button onClick={onChange}>Set Password</Button>
-        <Link href="/register">
-          <Button theme="borderless" type="primary">
-            {intl.formatMessage({ id: 'page.login.action.signUp' })}
-          </Button>
-        </Link>
-        <Tooltip content={process.env.NEXT_PUBLIC_APP_URL}>
-          <Button theme="solid" type="primary" htmlType="submit" loading={loading}>
+      <div className='w-full'>
+     
+          {/* <Link href="/register">
+            <Button theme="borderless" type="primary">
+              {intl.formatMessage({ id: 'page.login.action.signUp' })}
+            </Button>
+          </Link> */}
+
+        <Button style={{ borderRadius: 15 }}  theme="solid" block type="primary" htmlType="submit" loading={loading}>
             {intl.formatMessage({ id: 'page.login.action.signIn' })}
           </Button>
-        </Tooltip>
-      </Space>
+   
+        {/* <Divider className='text-purple-500 pt-6'>Or</Divider> */}
+      </div>
     );
   }
 
@@ -58,35 +57,38 @@ const LoginPage = ({}) =>  {
 
   return (
     <ClientOnly>
-      <div className="flex-1 flex justify-center items-center h-full">
+      <div className="flex-1 flex justify-center items-center min-h-screen">
         <NextSeo title="Sign in" />
-        <Form initValues={initValues} onSubmit={onSubmit}>
+        <Form
+          style={{ borderRadius: 30 }}
+          initValues={initValues}
+          onSubmit={onSubmit}
+          className="shadow-md backdrop-blur-md bg-white/20 px-5 py-5"
+        >
           <Card
-            style={{ width: 360 }}
-            title={
-              <Card.Meta
-                title={<FormattedMessage id="page.login.title" />}
-                description={<FormattedMessage id="page.login.desc" />}
-                avatar={<Avatar color="red">An</Avatar>}
-              />
-            }
-            footerLine
-            footerStyle={{ display: 'flex', justifyContent: 'flex-end' }}
+            style={{ background: 'transparent', width: 320, border: 0 }}
+            footerStyle={{ }}
             footer={<ComponentUsingFormApi />}
           >
-            {/* <input name="csrfToken" type="hidden" defaultValue={csrfToken} /> */}
+            <div className="w-full text-center mb-10">
+              <Typography className="font-bold" style={{ fontSize: 26, color: 'purple' }}>
+                Welcome SemiAdmin{' '}
+              </Typography>
+            </div>
             <Form.Input
-              field="email"
               label={'邮箱'}
+              field="email"
+              size="large"
               placeholder={'请输入您的邮箱'}
               rules={[{ required: true, message: '邮箱是必填项！' }]}
               prefix={<IconUser />}
             />
             <Form.Input
+              label={'密码'}
               field="password"
-              label={<FormattedMessage id="page.login.label.password" />}
+              size="large"
               placeholder={intl.formatMessage({ id: 'page.login.label.password' })}
-              rules={[{ required: true, min: 6 }]}
+              rules={[{ required: true, min: 6, message:"密码不符合规则"}]}
               mode="password"
               prefix={<IconLock />}
             />
@@ -95,8 +97,8 @@ const LoginPage = ({}) =>  {
       </div>
     </ClientOnly>
   );
-}
+};
 
-LoginPage.guestGuard = true 
+LoginPage.guestGuard = true;
 
-export default LoginPage
+export default LoginPage;
